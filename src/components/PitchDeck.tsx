@@ -107,12 +107,7 @@ const PitchDeck = () => {
       </div>
 
       {/* Slide Container */}
-      <div className="h-full flex items-center justify-center relative z-10">
-        {/* Debug indicator - remove later */}
-        <div className="fixed top-20 left-6 z-50 bg-black/80 text-white px-3 py-1 rounded text-xs">
-          Slide: {currentSlide + 1} / {slides.length}
-        </div>
-        
+      <div className="h-full flex items-center justify-center relative z-10">        
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -131,27 +126,28 @@ const PitchDeck = () => {
         </AnimatePresence>
       </div>
 
-      {/* Simplified Navigation Controls - Always Visible */}
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex items-center gap-4 z-50 bg-white/95 backdrop-blur-sm rounded-full px-6 py-3 shadow-xl border border-gray-200">
+      {/* Responsive Navigation Controls */}
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex items-center gap-2 sm:gap-4 z-50 bg-white/95 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3 shadow-xl border border-gray-200">
         <button
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
           <span className="hidden sm:inline">Previous</span>
+          <span className="sm:hidden">Prev</span>
         </button>
 
-        {/* Dot Navigation */}
-        <div className="flex items-center gap-2">
+        {/* Responsive Dot Navigation */}
+        <div className="flex items-center gap-1 sm:gap-2">
           {slides.map((slide, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
+              className={`rounded-full transition-all ${
                 index === currentSlide
-                  ? 'bg-orange-500 w-6'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  ? 'bg-orange-500 w-4 sm:w-6 h-1.5 sm:h-2'
+                  : 'bg-gray-300 hover:bg-gray-400 w-1.5 sm:w-2 h-1.5 sm:h-2'
               }`}
               title={`Go to ${slide.title}`}
             />
@@ -161,18 +157,19 @@ const PitchDeck = () => {
         <button
           onClick={nextSlide}
           disabled={currentSlide === slides.length - 1}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           <span className="hidden sm:inline">Next</span>
-          <ChevronRight className="h-4 w-4" />
+          <span className="sm:hidden">Next</span>
+          <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
         </button>
       </div>
 
-      {/* Slide Counter */}
-      <div className="fixed top-6 right-6 z-50 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-gray-200">
-        <span className="text-orange-500 font-semibold text-sm">{currentSlide + 1}</span>
-        <span className="mx-2 text-gray-400 text-sm">/</span>
-        <span className="text-gray-600 text-sm">{slides.length}</span>
+      {/* Responsive Slide Counter */}
+      <div className="fixed top-4 sm:top-6 right-4 sm:right-6 z-50 bg-white/95 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 shadow-lg border border-gray-200">
+        <span className="text-orange-500 font-semibold text-xs sm:text-sm">{currentSlide + 1}</span>
+        <span className="mx-1 sm:mx-2 text-gray-400 text-xs sm:text-sm">/</span>
+        <span className="text-gray-600 text-xs sm:text-sm">{slides.length}</span>
       </div>
 
       {/* Progress Bar */}
