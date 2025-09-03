@@ -4,26 +4,26 @@ import { Button } from '../ui/button';
 
 const HeroSlide = () => {
   return (
-    <div className="h-full flex items-center justify-center px-8 relative overflow-hidden">
+    <div className="h-full flex items-center justify-center px-4 sm:px-6 md:px-8 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#f7931a] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-[#ffa726] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+        <div className="absolute top-1/4 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#f7931a] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute bottom-1/4 left-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#ffa726] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
       </div>
 
-      <div className="max-w-5xl mx-auto text-center relative z-10">
+      <div className="max-w-5xl mx-auto text-center relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-6 sm:space-y-8 md:space-y-12"
         >
           {/* Enhanced Main Name */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-3 sm:space-y-4 md:space-y-6"
           >
             <motion.h1
               className="slide-title-visible tracking-tight"
@@ -34,18 +34,20 @@ const HeroSlide = () => {
               Yash Gandhi
             </motion.h1>
             
-            {/* Enhanced Tagline */}
+            {/* Enhanced Tagline - Mobile Responsive */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-2xl md:text-3xl text-foreground font-medium"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-foreground font-medium"
             >
-              <span className="text-foreground font-semibold">Frontend Engineer</span> 
-              <span className="mx-3 text-[#f7931a]">•</span>
-              <span className="text-foreground font-semibold">Web & Mobile Apps</span>
-              <span className="mx-3 text-[#f7931a]">•</span>
-              <span className="gradient-text font-bold">Bitcoiner</span>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3">
+                <span className="text-foreground font-semibold">Frontend Engineer</span> 
+                <span className="hidden sm:inline mx-1 md:mx-3 text-[#f7931a]">•</span>
+                <span className="text-foreground font-semibold">Web & Mobile Apps</span>
+                <span className="hidden sm:inline mx-1 md:mx-3 text-[#f7931a]">•</span>
+                <span className="gradient-text font-bold">Bitcoiner</span>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -54,20 +56,20 @@ const HeroSlide = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="max-w-3xl mx-auto"
+            className="max-w-3xl mx-auto px-2"
           >
-            <p className="text-xl md:text-2xl text-foreground leading-relaxed font-medium">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-foreground leading-relaxed font-medium">
               Passionate about creating exceptional user experiences with modern web technologies,
               React Native applications, and exploring the Bitcoin ecosystem.
             </p>
           </motion.div>
 
-          {/* Enhanced Social Links */}
+          {/* Enhanced Social Links - Mobile Optimized */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex items-center justify-center gap-6"
+            className="flex items-center justify-center gap-4 sm:gap-6"
           >
             {[
               { icon: Github, label: 'GitHub', href: 'https://github.com/gandhiyaash', color: 'hover:bg-gray-100' },
@@ -95,22 +97,22 @@ const HeroSlide = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className={`w-14 h-14 rounded-2xl border-2 border-border/50 ${social.color} hover:border-[#f7931a]/50 transition-all duration-300 shadow-soft hover:shadow-glow group glass-effect`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl border-2 border-border/50 ${social.color} hover:border-[#f7931a]/50 transition-all duration-300 shadow-soft hover:shadow-glow group glass-effect`}
                     onClick={() => window.open(social.href, '_blank')}
                   >
-                    <IconComponent className="h-6 w-6 text-muted-foreground group-hover:text-[#f7931a] transition-colors duration-300" />
+                    <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground group-hover:text-[#f7931a] transition-colors duration-300" />
                   </Button>
                 </motion.div>
               );
             })}
           </motion.div>
 
-          {/* Call to Action */}
+          {/* Call to Action - Mobile Optimized */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5 }}
-            className="pt-8"
+            className="pt-4 sm:pt-6 md:pt-8"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -118,15 +120,16 @@ const HeroSlide = () => {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#f7931a] to-[#ffa726] hover:from-[#ffa726] hover:to-[#f7931a] text-white font-semibold px-8 py-4 rounded-2xl shadow-glow hover:shadow-xl transition-all duration-300 text-lg group"
+                className="bg-gradient-to-r from-[#f7931a] to-[#ffa726] hover:from-[#ffa726] hover:to-[#f7931a] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-glow hover:shadow-xl transition-all duration-300 text-base sm:text-lg group"
                 onClick={() => {
                   // Trigger next slide
                   const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
                   window.dispatchEvent(event);
                 }}
               >
-                Explore My Journey
-                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                <span className="hidden sm:inline">Explore My Journey</span>
+                <span className="sm:hidden">View Portfolio</span>
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
             </motion.div>
           </motion.div>

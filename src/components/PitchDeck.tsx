@@ -89,34 +89,35 @@ const PitchDeck = () => {
         </AnimatePresence>
       </div>
 
-      {/* Enhanced Navigation Controls */}
+      {/* Enhanced Navigation Controls - Mobile Optimized */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.4 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-8 z-20"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-3 sm:gap-6 md:gap-8 z-20 px-4"
       >
         <Button
           variant="outline"
           size="sm"
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          className="glass-effect hover:bg-[#f7931a]/10 hover:border-[#f7931a]/30 disabled:opacity-30 transition-all duration-300 rounded-xl px-4 py-2 text-sm font-medium shadow-soft hover:shadow-glow"
+          className="glass-effect hover:bg-[#f7931a]/10 hover:border-[#f7931a]/30 disabled:opacity-30 transition-all duration-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-soft hover:shadow-glow"
         >
-          <ChevronLeft className="h-4 w-4 mr-2" />
-          Previous
+          <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+          <span className="hidden sm:inline">Previous</span>
+          <span className="sm:hidden">Prev</span>
         </Button>
 
-        {/* Clean Dot Navigation */}
-        <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+        {/* Clean Dot Navigation - Mobile Optimized */}
+        <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
           {slides.map((slide, index) => (
             <motion.button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-[#f7931a] w-6'
-                  : 'bg-gray-400 hover:bg-gray-300'
+                  ? 'bg-[#f7931a] w-4 sm:w-5 md:w-6 h-1.5 sm:h-2'
+                  : 'bg-gray-400 hover:bg-gray-300 w-1.5 sm:w-2 h-1.5 sm:h-2'
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
@@ -130,23 +131,24 @@ const PitchDeck = () => {
           size="sm"
           onClick={nextSlide}
           disabled={currentSlide === slides.length - 1}
-          className="glass-effect hover:bg-[#f7931a]/10 hover:border-[#f7931a]/30 disabled:opacity-30 transition-all duration-300 rounded-xl px-4 py-2 text-sm font-medium shadow-soft hover:shadow-glow"
+          className="glass-effect hover:bg-[#f7931a]/10 hover:border-[#f7931a]/30 disabled:opacity-30 transition-all duration-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-soft hover:shadow-glow"
         >
-          Next
-          <ChevronRight className="h-4 w-4 ml-2" />
+          <span className="hidden sm:inline">Next</span>
+          <span className="sm:hidden">Next</span>
+          <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1 sm:ml-2" />
         </Button>
       </motion.div>
 
-      {/* Enhanced Slide Counter */}
+      {/* Enhanced Slide Counter - Mobile Optimized */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.6, duration: 0.4 }}
-        className="absolute top-6 right-6 z-20 glass-effect rounded-xl px-4 py-2 shadow-soft"
+        className="absolute top-3 sm:top-4 md:top-6 right-3 sm:right-4 md:right-6 z-20 glass-effect rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 shadow-soft"
       >
-        <span className="text-[#f7931a] font-semibold text-sm">{currentSlide + 1}</span>
-        <span className="mx-2 text-muted-foreground text-sm">/</span>
-        <span className="text-muted-foreground text-sm">{slides.length}</span>
+        <span className="text-[#f7931a] font-semibold text-xs sm:text-sm">{currentSlide + 1}</span>
+        <span className="mx-1 sm:mx-2 text-muted-foreground text-xs sm:text-sm">/</span>
+        <span className="text-muted-foreground text-xs sm:text-sm">{slides.length}</span>
       </motion.div>
 
       {/* Enhanced Progress Bar */}

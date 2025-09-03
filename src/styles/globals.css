@@ -186,11 +186,11 @@
     animation: slideIn 0.5s ease-out forwards;
   }
 
-  /* Consistent Header Styles */
+  /* Mobile-First Responsive Header Styles */
   .slide-title {
-    font-size: 5rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     line-height: 1.1;
     background: linear-gradient(135deg, #f7931a 0%, #ffa726 50%, #f7931a 100%);
     background-clip: text;
@@ -202,7 +202,21 @@
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 20px rgba(247, 147, 26, 0.3));
   }
 
+  @media (min-width: 640px) {
+    .slide-title {
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+
   @media (min-width: 768px) {
+    .slide-title {
+      font-size: 5rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .slide-title {
       font-size: 7rem;
       margin-bottom: 4rem;
@@ -217,18 +231,32 @@
     }
   }
 
-  /* Alternative visible header style */
+  /* Alternative visible header style - Mobile First */
   .slide-title-visible {
-    font-size: 6rem;
+    font-size: 2.75rem;
     font-weight: 800;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     line-height: 1.1;
     color: #f7931a;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
+  @media (min-width: 640px) {
+    .slide-title-visible {
+      font-size: 3.75rem;
+      margin-bottom: 2rem;
+    }
+  }
+
   @media (min-width: 768px) {
+    .slide-title-visible {
+      font-size: 5.5rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .slide-title-visible {
       font-size: 8.5rem;
       margin-bottom: 4rem;
@@ -236,15 +264,29 @@
   }
 
   .slide-subtitle {
-    font-size: 1.75rem;
+    font-size: 1rem;
     font-weight: 400;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     line-height: 1.4;
     color: hsl(var(--foreground));
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
+  @media (min-width: 640px) {
+    .slide-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
   @media (min-width: 768px) {
+    .slide-subtitle {
+      font-size: 1.75rem;
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .slide-subtitle {
       font-size: 2.25rem;
       margin-bottom: 5rem;
@@ -252,28 +294,56 @@
   }
 
   .card-title {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: hsl(var(--foreground));
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
 
+  @media (min-width: 640px) {
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+
   @media (min-width: 768px) {
+    .card-title {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .card-title {
       font-size: 2rem;
     }
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: hsl(var(--foreground));
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
 
+  @media (min-width: 640px) {
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 1.75rem;
+    }
+  }
+
   @media (min-width: 768px) {
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .section-title {
       font-size: 2.5rem;
     }
@@ -361,7 +431,7 @@ html {
   font-size: var(--font-size);
 }
 
-/* Enhanced visibility utilities */
+/* Enhanced visibility utilities - Mobile First */
 .content-enhanced {
   color: hsl(var(--foreground));
   font-weight: 500;
@@ -371,17 +441,30 @@ html {
 .text-enhanced {
   color: hsl(var(--foreground)) !important;
   font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .text-enhanced {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
 }
 
 @media (min-width: 768px) {
+  .text-enhanced {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .text-enhanced {
     font-size: 1.375rem;
   }
 }
 
-/* Enhanced card styling for better visibility */
+/* Enhanced card styling for better visibility - Mobile First */
 .card-enhanced {
   background: hsl(var(--card));
   border: 2px solid hsl(var(--border));
@@ -392,4 +475,29 @@ html {
 .card-enhanced:hover {
   border-color: #f7931a;
   box-shadow: 0 12px 48px rgba(247, 147, 26, 0.2);
+}
+
+/* Mobile-specific text sizes */
+.mobile-text-sm {
+  font-size: 0.875rem;
+}
+
+.mobile-text-base {
+  font-size: 1rem;
+}
+
+.mobile-text-lg {
+  font-size: 1.125rem;
+}
+
+.mobile-text-xl {
+  font-size: 1.25rem;
+}
+
+.mobile-text-2xl {
+  font-size: 1.5rem;
+}
+
+.mobile-text-3xl {
+  font-size: 1.875rem;
 }
