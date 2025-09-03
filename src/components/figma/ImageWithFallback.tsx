@@ -1,33 +1,46 @@
-import React, { useState } from 'react';
+import * as React from "react"
 
-interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
-  fallback?: string;
+export interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  src: string
+  alt: string
+  fallbackSrc?: string
 }
 
-export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
-  src,
-  alt,
-  fallback = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik04NS4zMzMzIDY2LjY2NjdIMTE0LjY2N1Y4NS4zMzMzSDEyNlY5NC42NjY3SDExNC42NjdWMTMzLjMzM0g4NS4zMzMzVjk0LjY2NjdINzRWODUuMzMzM0g4NS4zMzMzVjY2LjY2NjdaIiBmaWxsPSIjOUI5QjlCIi8+Cjwvc3ZnPgo=',
-  ...props
-}) => {
-  const [imageSrc, setImageSrc] = useState(src);
-  const [hasError, setHasError] = useState(false);
+const ImageWithFallback = React.forwardRef<HTMLImageElement, ImageWithFallbackProps>(
+  ({ src, alt, fallbackSrc, className, ...props }, ref) => {
+    const [imgSrc, setImgSrc] = React.useState(src)
+    const [hasError, setHasError] = React.useState(false)
 
-  const handleError = () => {
-    if (!hasError) {
-      setHasError(true);
-      setImageSrc(fallback);
+    React.useEffect(() => {
+      setImgSrc(src)
+      setHasError(false)
+    }, [src])
+
+    const handleError = () => {
+      if (!hasError) {
+        setHasError(true)
+        if (fallbackSrc) {
+          setImgSrc(fallbackSrc)
+        } else {
+          // Create a simple gradient fallback
+          setImgSrc("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f7931a;stop-opacity:0.3' /%3E%3Cstop offset='100%25' style='stop-color:%23e65100;stop-opacity:0.6' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad)' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-family='Arial, sans-serif' font-size='16' fill='%23ffffff'%3E" + encodeURIComponent(alt) + "%3C/text%3E%3C/svg%3E")
+        }
+      }
     }
-  };
 
-  return (
-    <img
-      {...props}
-      src={imageSrc}
-      alt={alt}
-      onError={handleError}
-    />
-  );
-};
+    return (
+      <img
+        ref={ref}
+        src={imgSrc}
+        alt={alt}
+        className={className}
+        onError={handleError}
+        {...props}
+      />
+    )
+  }
+)
+
+ImageWithFallback.displayName = "ImageWithFallback"
+
+export { ImageWithFallback }

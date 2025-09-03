@@ -21,7 +21,7 @@ const CTASlide = () => {
     {
       icon: MessageCircle,
       label: 'Signal',
-      value: 'yashgandhi.24',
+      value: 'Connect on Signal',
       href: 'https://signal.me/#eu/8aHfKi_H373qHseAIesZ1VF0c_EKoyqRSnTib1ZCbNlW_dZyffRGG6oEjFZsMtdH',
       color: 'from-blue-500 to-blue-600'
     },

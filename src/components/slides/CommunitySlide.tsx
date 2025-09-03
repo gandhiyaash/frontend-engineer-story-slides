@@ -133,7 +133,7 @@ const CommunitySlide = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#f7931a]/10 border border-[#f7931a]/20">
             <Bitcoin className="h-3 w-3 text-[#f7931a]" />
             <span className="text-[#f7931a] font-medium text-xs">
-              "Not your keys, not your coin. Not your code, not your app."
+              "Not your keys, not your coins. Not your code, not your app."
             </span>
           </div>
         </motion.div>

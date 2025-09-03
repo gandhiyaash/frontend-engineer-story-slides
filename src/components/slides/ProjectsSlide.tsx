@@ -9,7 +9,7 @@ const ProjectsSlide = () => {
   const projects = [
     {
       id: 'bitcoinpolicy',
-      title: 'Bitcoin Policy Institute India',
+      title: 'bitcoinpolicy.in',
       description: 'Bitcoin-focused frontend app providing policy insights and regulatory analysis for India.',
       image: 'https://images.unsplash.com/photo-1659018966825-43297e655ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaXRjb2luJTIwZGFzaGJvYXJkJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1NjgwNjExNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
@@ -23,7 +23,7 @@ const ProjectsSlide = () => {
       description: 'Complete alcohol delivery ecosystem with multiple apps and comprehensive vendor management.',
       image: 'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MXx8fHwxNzU2NzQxMTczfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       technologies: ['React Native', 'React', 'Node.js', 'MongoDB'],
-      liveUrl: 'https://vendor.sandbox.sipstr.com',
+      liveUrl: 'https://vendor.sandbox.sipstr.com/',
       icon: Smartphone,
       color: 'from-blue-500 to-purple-500',
       subProjects: [

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Smartphone, Database, Cloud } from 'lucide-react';
+import { Smartphone, Database, Cloud, Code, Layers, Zap } from 'lucide-react';
+import { Badge } from '../ui/badge';
 
 const SkillsSlide = () => {
   const skillGroups = [
