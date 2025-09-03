@@ -120,11 +120,10 @@ const HeroSlide = () => {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#f7931a] to-[#ffa726] hover:from-[#ffa726] hover:to-[#f7931a] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-glow hover:shadow-xl transition-all duration-300 text-base sm:text-lg group"
+                className="bg-gradient-to-r from-[#f7931a] to-[#ffa726] hover:from-[#ffa726] hover:to-[#f7931a] text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-base sm:text-lg group border-0"
                 onClick={() => {
-                  // Trigger next slide
-                  const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
-                  window.dispatchEvent(event);
+                  // Dispatch a custom event to trigger slide navigation
+                  window.dispatchEvent(new CustomEvent('nextSlide'));
                 }}
               >
                 <span className="hidden sm:inline">Explore My Journey</span>

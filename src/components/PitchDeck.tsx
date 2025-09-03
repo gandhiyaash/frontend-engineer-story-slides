@@ -37,7 +37,7 @@ const PitchDeck = () => {
     setCurrentSlide(index);
   };
 
-  // Keyboard navigation
+  // Keyboard and touch navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
@@ -49,8 +49,45 @@ const PitchDeck = () => {
       }
     };
 
+    const handleNextSlide = () => {
+      nextSlide();
+    };
+
+    // Touch/swipe navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeDistance = Math.abs(touchStartX - touchEndX);
+      const minSwipeDistance = 50;
+
+      if (swipeDistance > minSwipeDistance) {
+        if (touchStartX > touchEndX) {
+          // Swipe left - next slide
+          nextSlide();
+        } else {
+          // Swipe right - previous slide
+          prevSlide();
+        }
+      }
+    };
+
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener('nextSlide', handleNextSlide);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('nextSlide', handleNextSlide);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
   }, []);
 
   const CurrentSlideComponent = slides[currentSlide].component;
@@ -94,14 +131,15 @@ const PitchDeck = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.4 }}
-        className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-3 sm:gap-6 md:gap-8 z-20 px-4"
+        className="fixed bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-3 sm:gap-6 md:gap-8 z-50 px-4"
+        style={{ zIndex: 9999 }}
       >
         <Button
           variant="outline"
           size="sm"
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          className="glass-effect hover:bg-[#f7931a]/10 hover:border-[#f7931a]/30 disabled:opacity-30 transition-all duration-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-soft hover:shadow-glow"
+          className="bg-white/90 backdrop-blur-md border-2 border-gray-300 hover:bg-[#f7931a]/10 hover:border-[#f7931a] disabled:opacity-30 transition-all duration-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-lg hover:shadow-xl"
         >
           <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
           <span className="hidden sm:inline">Previous</span>
@@ -109,7 +147,7 @@ const PitchDeck = () => {
         </Button>
 
         {/* Clean Dot Navigation - Mobile Optimized */}
-        <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+        <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-white/90 backdrop-blur-md rounded-full border-2 border-gray-300 shadow-lg">
           {slides.map((slide, index) => (
             <motion.button
               key={index}
@@ -131,7 +169,7 @@ const PitchDeck = () => {
           size="sm"
           onClick={nextSlide}
           disabled={currentSlide === slides.length - 1}
-          className="glass-effect hover:bg-[#f7931a]/10 hover:border-[#f7931a]/30 disabled:opacity-30 transition-all duration-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-soft hover:shadow-glow"
+          className="bg-white/90 backdrop-blur-md border-2 border-gray-300 hover:bg-[#f7931a]/10 hover:border-[#f7931a] disabled:opacity-30 transition-all duration-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-lg hover:shadow-xl"
         >
           <span className="hidden sm:inline">Next</span>
           <span className="sm:hidden">Next</span>
@@ -144,17 +182,18 @@ const PitchDeck = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.6, duration: 0.4 }}
-        className="absolute top-3 sm:top-4 md:top-6 right-3 sm:right-4 md:right-6 z-20 glass-effect rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 shadow-soft"
+        className="fixed top-3 sm:top-4 md:top-6 right-3 sm:right-4 md:right-6 z-50 bg-white/90 backdrop-blur-md border-2 border-gray-300 rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 shadow-lg"
+        style={{ zIndex: 9999 }}
       >
         <span className="text-[#f7931a] font-semibold text-xs sm:text-sm">{currentSlide + 1}</span>
-        <span className="mx-1 sm:mx-2 text-muted-foreground text-xs sm:text-sm">/</span>
-        <span className="text-muted-foreground text-xs sm:text-sm">{slides.length}</span>
+        <span className="mx-1 sm:mx-2 text-gray-600 text-xs sm:text-sm">/</span>
+        <span className="text-gray-600 text-xs sm:text-sm">{slides.length}</span>
       </motion.div>
 
       {/* Enhanced Progress Bar */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-border/20 z-20">
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50" style={{ zIndex: 9999 }}>
         <motion.div
-          className="h-full bg-gradient-to-r from-[#f7931a] via-[#ffa726] to-[#f7931a] shadow-glow"
+          className="h-full bg-gradient-to-r from-[#f7931a] via-[#ffa726] to-[#f7931a] shadow-lg"
           initial={{ width: "0%" }}
           animate={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
