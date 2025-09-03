@@ -4,10 +4,11 @@ import { ExternalLink, Smartphone, Globe, Database, Shield } from 'lucide-react'
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
-      title: 'bitcoinpolicy.in',
+      title: 'Bitcoin Policy Institute India',
       description: 'Bitcoin-focused frontend app providing policy insights and regulatory analysis for India.',
       image: 'https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
+      liveUrl: 'https://bitcoinpolicy.in',
       color: 'bg-orange-500'
     },
     {
@@ -15,6 +16,7 @@ const ProjectsSection: React.FC = () => {
       description: 'Complete alcohol delivery ecosystem with multiple apps and comprehensive vendor management.',
       image: 'https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['React Native', 'React', 'Node.js', 'MongoDB'],
+      liveUrl: 'https://vendor.sandbox.sipstr.com',
       components: [
         { icon: Smartphone, name: 'Customer App' },
         { icon: Smartphone, name: 'Delivery App' },
@@ -90,7 +92,10 @@ const ProjectsSection: React.FC = () => {
                 ))}
               </div>
 
-              <button className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 animate-ultra-smooth hover:scale-105 hover:shadow-2xl hover:-translate-y-1 animate-pulse-glow group">
+              <button 
+                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 animate-ultra-smooth hover:scale-105 hover:shadow-2xl hover:-translate-y-1 animate-pulse-glow group"
+                onClick={() => window.open(project.liveUrl, '_blank')}
+              >
                 <ExternalLink size={16} className="hover:animate-wiggle" />
                 <span>Live Demo</span>
               </button>
