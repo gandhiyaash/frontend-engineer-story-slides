@@ -1,6 +1,13 @@
 import { motion } from 'motion/react';
-import { Github, Mail, ArrowRight } from 'lucide-react';
+import { Github, Mail, ArrowRight, MessageCircle } from 'lucide-react';
 import { Button } from '../ui/button';
+
+// Custom X (Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
 const HeroSlide = () => {
   return (
@@ -73,6 +80,8 @@ const HeroSlide = () => {
           >
             {[
               { icon: Github, label: 'GitHub', href: 'https://github.com/gandhiyaash', color: 'hover:bg-gray-100' },
+              { icon: MessageCircle, label: 'Signal', href: 'https://signal.me/#eu/8aHfKi_H373qHseAIesZ1VF0c_EKoyqRSnTib1ZCbNlW_dZyffRGG6oEjFZsMtdH', color: 'hover:bg-blue-50' },
+              { icon: XIcon, label: 'X', href: 'https://x.com/__yashgandhi__', color: 'hover:bg-gray-100' },
               { icon: Mail, label: 'Email', href: 'mailto:yashbtc@proton.me', color: 'hover:bg-green-50' },
             ].map((social, index) => {
               const IconComponent = social.icon;

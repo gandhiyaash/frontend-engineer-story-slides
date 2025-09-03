@@ -1,104 +1,104 @@
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { ExternalLink, Github } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import React from 'react';
+import { ExternalLink, Smartphone, Globe, Database, Shield } from 'lucide-react';
 
-const ProjectsSection = () => {
+const ProjectsSection: React.FC = () => {
   const projects = [
     {
-      id: 'bitcoinpolicy',
       title: 'bitcoinpolicy.in',
-      description: 'A comprehensive platform providing insights and analysis on Bitcoin policy and regulation in India.',
-      image: 'https://images.unsplash.com/photo-1659018966825-43297e655ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaXRjb2luJTIwZGFzaGJvYXJkJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1NjgwNjExNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
-      liveUrl: 'https://bitcoinpolicy.in',
-      githubUrl: '#',
+      description: 'Bitcoin-focused frontend app providing policy insights and regulatory analysis for India.',
+      image: 'https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
+      color: 'bg-orange-500'
     },
     {
-      id: 'sipstr',
-      title: 'Sipstr',
-      description: 'A Bitcoin-focused social platform enabling seamless value transfer through Lightning Network integration.',
-      image: 'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MXx8fHwxNzU2NzQxMTczfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      technologies: ['React Native', 'Lightning SDK', 'WebRTC', 'Bitcoin'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      id: 'vendor-dashboard',
-      title: 'Vendor Dashboard',
-      description: 'Enterprise-scale vendor management system with real-time analytics, automated workflows, and comprehensive reporting.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZW5kb3IlMjBkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MXx8fHwxNzU2ODA2MTE1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      technologies: ['React', 'TypeScript', 'Material-UI', 'D3.js'],
-      liveUrl: 'https://vendor.sandbox.sipstr.com/',
-      githubUrl: '#',
-    },
+      title: 'Sipstr Platform',
+      description: 'Complete alcohol delivery ecosystem with multiple apps and comprehensive vendor management.',
+      image: 'https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['React Native', 'React', 'Node.js', 'MongoDB'],
+      components: [
+        { icon: Smartphone, name: 'Customer App' },
+        { icon: Smartphone, name: 'Delivery App' },
+        { icon: Database, name: 'Vendor Dashboard' },
+        { icon: Shield, name: 'Admin Portal' }
+      ],
+      color: 'bg-blue-500'
+    }
   ];
 
   return (
-    <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A selection of projects showcasing my expertise in frontend development and Bitcoin technology
-          </p>
-        </div>
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-12 animate-bounce-in">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
+          Featured Projects
+        </h2>
+        <p className="text-lg text-gray-600 animate-slide-up delay-300">
+          Showcase of frontend development and Bitcoin ecosystem projects
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="relative h-48 overflow-hidden">
-                <ImageWithFallback
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
+      <div className="grid lg:grid-cols-2 gap-8">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl animate-ultra-smooth hover:scale-105 hover:-translate-y-6 animate-scale-in group cursor-pointer"
+            style={{ animationDelay: `${500 + index * 300}ms` }}
+          >
+            <div className="relative h-48 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover animate-ultra-smooth group-hover:scale-115 group-hover:rotate-1"
+              />
+              <div className="absolute top-4 right-4">
+                <div className={`w-8 h-8 ${project.color} rounded-full flex items-center justify-center animate-float group-hover:animate-pulse-glow`}>
+                  {index === 0 ? <Globe size={16} className="text-white group-hover:animate-wiggle" /> : <Smartphone size={16} className="text-white group-hover:animate-wiggle" />}
+                </div>
               </div>
+            </div>
+            
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-indigo-600 animate-smooth-hover">
+                {project.title}
+              </h3>
               
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
+              <p className="text-gray-600 leading-relaxed mb-6 group-hover:text-gray-700 animate-smooth-hover">
+                {project.description}
+              </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
+              {project.components && (
+                <div className="mb-6">
+                  <p className="text-sm font-medium text-gray-700 mb-3">Platform Components:</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {project.components.map((component, compIndex) => (
+                      <div key={compIndex} className="flex items-center space-x-2 text-sm text-gray-600 hover:text-indigo-600 animate-smooth-hover cursor-pointer hover:scale-105 hover:-translate-y-0.5">
+                        <component.icon size={14} className="hover:animate-wiggle" />
+                        <span>{component.name}</span>
+                      </div>
                     ))}
                   </div>
-
-                  <div className="flex gap-2 pt-2">
-                    <Button 
-                      size="sm" 
-                      className="flex-1"
-                      onClick={() => window.open(project.liveUrl, '_blank')}
-                      disabled={project.liveUrl === '#'}
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
-                      disabled={project.githubUrl === '#'}
-                    >
-                      <Github className="h-4 w-4" />
-                    </Button>
-                  </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              )}
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.technologies.map((tech, techIndex) => (
+                  <span
+                    key={techIndex}
+                    className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-indigo-100 hover:text-indigo-700 animate-smooth-hover hover:scale-110 cursor-pointer hover:-translate-y-1 hover:shadow-md"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <button className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 animate-ultra-smooth hover:scale-105 hover:shadow-2xl hover:-translate-y-1 animate-pulse-glow group">
+                <ExternalLink size={16} className="hover:animate-wiggle" />
+                <span>Live Demo</span>
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

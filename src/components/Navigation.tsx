@@ -1,67 +1,55 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const Navigation = () => {
-  const [activeSection, setActiveSection] = useState('hero');
+interface NavigationProps {
+  currentSection: number;
+  totalSections: number;
+  onNext: () => void;
+  onPrev: () => void;
+  onGoTo: (index: number) => void;
+}
 
-  const sections = [
-    { id: 'hero', label: 'Home' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'identity', label: 'Identity' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'cta', label: 'Contact' },
-  ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id]');
-      const scrollPos = window.scrollY + 100;
-
-      sections.forEach((section) => {
-        const element = section as HTMLElement;
-        const top = element.offsetTop;
-        const height = element.offsetHeight;
-
-        if (scrollPos >= top && scrollPos < top + height) {
-          setActiveSection(element.id);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+const Navigation: React.FC<NavigationProps> = ({
+  currentSection,
+  totalSections,
+  onNext,
+  onPrev,
+  onGoTo
+}) => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="font-medium">Yash Gandhi</div>
-          <div className="hidden md:flex items-center gap-8">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`text-sm transition-colors hover:text-primary ${
-                  activeSection === section.id
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {section.label}
-              </button>
-            ))}
-          </div>
+    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40">
+      <div className="flex items-center space-x-4 bg-white/95 backdrop-blur-xl rounded-full px-6 py-3 shadow-xl border border-gray-200/50 hover:shadow-2xl animate-ultra-smooth hover:scale-102 hover:-translate-y-1 animate-slide-up delay-1000">
+        <button
+          onClick={onPrev}
+          disabled={currentSection === 0}
+          className="p-2 text-gray-600 hover:text-gray-900 animate-smooth-hover disabled:opacity-50 disabled:cursor-not-allowed rounded-full hover:bg-gray-100 hover:scale-110 hover:animate-wiggle"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div className="flex space-x-2">
+          {Array.from({ length: totalSections }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => onGoTo(index)}
+              className={`w-2 h-2 rounded-full animate-ultra-smooth hover:scale-150 ${
+                index === currentSection
+                  ? 'bg-orange-500 w-6 animate-pulse-glow'
+                  : 'bg-gray-300 hover:bg-orange-400 hover:animate-wiggle'
+              }`}
+            />
+          ))}
         </div>
+
+        <button
+          onClick={onNext}
+          disabled={currentSection === totalSections - 1}
+          className="p-2 text-gray-600 hover:text-gray-900 animate-smooth-hover disabled:opacity-50 disabled:cursor-not-allowed rounded-full hover:bg-gray-100 hover:scale-110 hover:animate-wiggle"
+        >
+          <ChevronRight size={20} />
+        </button>
       </div>
-    </nav>
+    </div>
   );
 };
 

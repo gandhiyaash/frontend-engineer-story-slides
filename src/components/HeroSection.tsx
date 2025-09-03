@@ -1,54 +1,23 @@
-import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
-import { Button } from './ui/button';
+import React from 'react';
 
-const HeroSection = () => {
-  const scrollToNext = () => {
-    const element = document.getElementById('skills');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+const HeroSection: React.FC = () => {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-              Yash Gandhi
-            </h1>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-xl md:text-2xl text-muted-foreground">
-              <span>Frontend Engineer</span>
-              <span className="hidden md:block">•</span>
-              <span>Bitcoiner</span>
-            </div>
-          </div>
-          
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Crafting intuitive user experiences and building the future of Bitcoin-powered applications
-          </p>
-
-          <div className="flex items-center justify-center gap-4 pt-4">
-            <Button variant="outline" size="icon">
-              <Github className="h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Twitter className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-
-        <button
-          onClick={scrollToNext}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-muted-foreground hover:text-primary transition-colors"
-        >
-          <ArrowDown className="h-6 w-6" />
-        </button>
+    <div className="text-center max-w-4xl mx-auto animate-fade-in">
+      <div className="mb-8">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 animate-bounce-in">
+          Yash Gandhi
+        </h1>
+        <h2 className="text-2xl md:text-3xl text-indigo-600 font-medium mb-6 animate-slide-down delay-200">
+          Frontend Engineer • Web & Mobile Apps • Bitcoiner
+        </h2>
+        
+        <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-400">
+          Passionate about creating exceptional user experiences with modern web technologies, 
+          React Native applications, and exploring the Bitcoin ecosystem.
+        </p>
       </div>
-    </section>
+
+    </div>
   );
 };
 
