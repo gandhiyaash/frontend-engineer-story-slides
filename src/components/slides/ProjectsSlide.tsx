@@ -1,12 +1,10 @@
-import { motion } from 'motion/react';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink, Github, Smartphone, Globe, Monitor, Settings } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 const ProjectsSlide = () => {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const projects = [
     {
