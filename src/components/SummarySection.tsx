@@ -27,12 +27,12 @@ const SummarySection: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto text-center">
-      <div className="mb-12 animate-bounce-in">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-typing">
+    <div className="max-w-4xl mx-auto text-center px-2 md:px-0">
+      <div className="mb-8 md:mb-12 animate-bounce-in">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4 animate-typing">
           Professional Summary
         </h2>
-        <div className="max-w-3xl mx-auto space-y-6 text-gray-700 text-lg leading-relaxed">
+        <div className="max-w-3xl mx-auto space-y-4 md:space-y-6 text-gray-700 text-base md:text-lg leading-relaxed px-2">
           <p className="animate-slide-right delay-300">
             <strong>Frontend/UI Engineer</strong> with expertise in React, React Native, TypeScript, Next.js and Node.js.
           </p>
@@ -45,20 +45,20 @@ const SummarySection: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-2xl animate-ultra-smooth hover:scale-110 hover:-translate-y-4 animate-bounce-in group cursor-pointer"
+            className="bg-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-2xl animate-ultra-smooth hover:scale-110 hover:-translate-y-4 animate-bounce-in group cursor-pointer"
             style={{ animationDelay: `${800 + index * 200}ms` }}
           >
-            <div className={`w-12 h-12 ${skill.bgColor} rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:animate-wiggle animate-float group-hover:shadow-lg animate-smooth-hover`}>
-              <skill.icon size={24} className="text-white group-hover:scale-125 animate-smooth-hover" />
+            <div className={`w-10 h-10 md:w-12 md:h-12 ${skill.bgColor} rounded-lg flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:animate-wiggle animate-float group-hover:shadow-lg animate-smooth-hover`}>
+              <skill.icon size={20} className="md:w-6 md:h-6 text-white group-hover:scale-125 animate-smooth-hover" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-indigo-600 animate-smooth-hover">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-1.5 md:mb-2 group-hover:text-indigo-600 animate-smooth-hover">
               {skill.title}
             </h3>
-            <p className="text-gray-600 text-sm group-hover:text-gray-700 animate-smooth-hover">
+            <p className="text-xs md:text-sm text-gray-600 group-hover:text-gray-700 animate-smooth-hover">
               {skill.description}
             </p>
           </div>

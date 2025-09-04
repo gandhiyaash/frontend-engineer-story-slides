@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import SummarySection from './components/SummarySection';
@@ -41,8 +41,11 @@ function App() {
       <Header />
       
       <main className="relative overflow-hidden">
-        <div className="min-h-screen flex items-center justify-center p-4">
-          <CurrentComponent />
+        {/* Add proper spacing for fixed header and navigation on mobile */}
+        <div className="min-h-screen flex items-center justify-center p-4 pt-20 pb-24 md:pt-16 md:pb-20">
+          <div className="w-full max-h-[calc(100vh-11rem)] md:max-h-none overflow-y-auto md:overflow-visible">
+            <CurrentComponent />
+          </div>
         </div>
         
         <Navigation
